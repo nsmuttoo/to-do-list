@@ -1,0 +1,59 @@
+:root{
+    background-color: red;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#content{
+   display: flex;
+   justify-content: center;
+    
+    
+}
+header{
+    text-align: center;
+    padding: 20px;
+
+}
+header div{
+    padding: 20px;
+    font-size: 50px;
+    font-weight: 700;
+    border-style: solid;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.contentContainer{
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px;
+    margin: 20px;
+    text-align: center;
+    margin-left: 80px;
+    margin-right: 80px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgb(255, 56, 56);
+    width: 800px;
+}
+
+ul{
+    list-style: none;
+    text-align: center;
+    padding-right: 7%;
+}
+
+nav button{
+background-color:rgb(255, 56, 56) ;
+border-style: solid;
+border-color: black;
+border-radius: 5px;
+width: 100px;
+
+}
+nav{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
