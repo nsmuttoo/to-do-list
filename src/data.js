@@ -24,6 +24,7 @@ function checkToggle(){
     }else{
         this.check=0
     }
+    console.log(this.check)
 }
 
 
