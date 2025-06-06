@@ -1,5 +1,8 @@
 const eee = 6
 
+import collapse from "./images/arrow-collapse.svg"
+import edit from "./images/pencil.svg"
+
 function displayList(list){
 const content = document.getElementById("content")
 
@@ -32,32 +35,88 @@ function displayItem(item, num){
     expandButton.addEventListener("click",expand)
 
     const editButton = document.createElement("button")
-    editButton.innerHTML = "edit"
+    const editImg = document.createElement("img")
+    editImg.src = edit
+     editImg.id = "icon"
+     editButton.appendChild(editImg)
+    
     editButton.addEventListener("click",openEdit)
 
     const collapseButton = document.createElement("button")
-    collapseButton.innerHTML = "collapse"
+   const collapseImg = document.createElement("img")
+   collapseImg.src = collapse
+    collapseImg.id = "icon"
+    collapseButton.appendChild(collapseImg)
     collapseButton.addEventListener("click",standard)
+
+    const finishEdit = document.createElement("button")
+    finishEdit.innerHTML = "submit"
+    finishEdit.addEventListener("click", submit)
+
+    const editTitle = document.createElement("input")
+    const editDescription = document.createElement("input")
+    const editDueDate = document.createElement("input")
+    const editPriority = document.createElement("input")
 
     function expand(){
         itemBox.innerHTML = ""
         itemBox.appendChild(title)
+        itemBox.appendChild(description)
+        itemBox.appendChild(dueDate)
+        itemBox.appendChild(priority)
+
+        itemBox.appendChild(checkButton)
+        itemBox.appendChild(editButton)
         itemBox.appendChild(collapseButton)
+    }
+
+    function submit(){
+        item.setTitle(editTitle.value)
+        title.innerHTML = editTitle.value
+
+        item.setDescription(editDescription.value)
+        description.innerHTML = editDescription.value
+
+        item.setDueDate(editDueDate.value)
+        dueDate.innerHTML = editDueDate.value
+
+        item.setPriority(editPriority.value)
+        priority.innerHTML = editPriority.value
+
+
+        standard()
     }
 
     function standard(){
         itemBox.innerHTML = ""
         itemBox.appendChild(title)
-    itemBox.appendChild(description)
-    itemBox.appendChild(dueDate)
     itemBox.appendChild(priority)
     itemBox.appendChild(checkButton)
-    itemBox.appendChild(editButton)
     itemBox.appendChild(expandButton)
 
     }
 
     function openEdit(){
+        itemBox.innerHTML = ""
+        itemBox.appendChild(editTitle)
+        editTitle.value = ""
+        editTitle.placeholder = "Title"
+
+        itemBox.appendChild(editDescription)
+        editDescription.value = ""
+        editDescription.placeholder = "Description"
+
+        itemBox.appendChild(editDueDate)
+        editDueDate.value = ""
+        editDueDate.placeholder = "DueDate"
+
+        itemBox.appendChild(editPriority)
+        editPriority.value = ""
+        editPriority.placeholder = "Priority"
+
+        itemBox.appendChild(finishEdit)
+
+        itemBox.appendChild(collapseButton)
 
     }
 
