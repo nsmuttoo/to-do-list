@@ -1,16 +1,56 @@
 :root{
-    background-color: red;
+    background-color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 #icon{
     height: 30px;
     width: auto;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+.itemBox{
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+    border-width: 2px;
+
+}
+
+#content :hover{
+    background-color: rgb(224, 224, 224);
+}
+
+.itemBoxStd{
+display: grid;
+grid-template: 1fr/ 1fr 1fr 1fr 1fr;
+}
+
+.itemBoxExp{
+    
+
+}
+
+.itemBoxEdt{
+    
+}
+button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
 }
 
 #content{
-   display: flex;
-   justify-content: center;
+   display: grid;
+   grid-template: 1fr 1fr 1fr 1fr /1fr;
     
     
 }

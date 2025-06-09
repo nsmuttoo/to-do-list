@@ -29,7 +29,9 @@ function checkToggle(){
 
 
 
-    return{title,description,dueDate,priority,check ,setTitle,setDescription,setDueDate,setPriority,checkToggle}
+
+
+    return{title,description,dueDate,priority,check ,setTitle,setDescription,setDueDate,setPriority,checkToggle,check}
 
 
 }
