@@ -8,7 +8,14 @@ import checked from "./images/checkbox-intermediate.svg"
 import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
 
+import { createItem } from "./data"
+
 let lastList = []
+export {getList}
+
+function getList(){
+    return lastList
+}
 
 function displayList(list){
 const content = document.getElementById("content")
@@ -33,12 +40,20 @@ function addToDoDisplay(){
     const description = document.createElement("input")
     description.placeholder = "Descripton"
     const dueDate = document.createElement("input")
-    dueDate.placeHolder = "DueDate"
+    dueDate.placeholder = "DueDate"
     const priority = document.createElement("input")
     priority.placeholder = "Priority"
 
     const startNewButton = document.createElement("button")
     const submitNewButton = document.createElement("button")
+
+    const saveImg = document.createElement("img")
+    saveImg.src = save
+    saveImg.id = "icon"
+
+    submitNewButton.appendChild(saveImg)
+    submitNewButton.addEventListener("click", saved)
+
 
     const plusImg = document.createElement("img")
    plusImg.src = plus
@@ -59,6 +74,13 @@ startNewButton.appendChild(plusImg)
         addBox.appendChild(submitNewButton)
         
         
+    }
+    function saved(){
+        console.log("ooooo")
+        lastList.push(
+            createItem(title.value,description.value,dueDate.value,priority.value))
+        displayList(lastList)
+
     }
 
 
