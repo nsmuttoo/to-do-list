@@ -119,19 +119,25 @@ startNewButton.appendChild(plusImg)
 function displayItem(item, num){
     const itemBox = document.createElement("div")
     itemBox.id = num
-    itemBox.classList = "itemBoxStd, itemBox"
+    itemBox.classList.add("itemBoxStd")
+    itemBox.classList.add("itemBox") 
     const title = document.createElement("div")
     title.innerHTML = item.title
+
+    title.classList.add("title")
     const description = document.createElement("div")
+    description.classList.add("description")
     description.innerHTML = item.description
     const dueDate = document.createElement("div")
+    dueDate.classList.add("dueDate")
     dueDate.innerHTML = item.dueDate
     const priority = document.createElement("div")
+    priority.classList.add("priority")
     priority.innerHTML = item.priority
 
     const checkButton = document.createElement("button")
     checkButton.addEventListener("click",changeCheck)
-    
+    checkButton.classList.add("checkButton")
    
    const uncheckedImg = document.createElement("img")
     uncheckedImg.src = unchecked
@@ -150,6 +156,7 @@ if(item.check == 0){
 
     const expandButton = document.createElement("button")
     expandButton.addEventListener("click",expand)
+    expandButton.classList.add("expandButton")
 
     const expandImg = document.createElement("img")
     expandImg.src = expandSvg
@@ -161,6 +168,8 @@ if(item.check == 0){
     editImg.src = edit
      editImg.id = "icon"
      editButton.appendChild(editImg)
+
+     editButton.classList.add("editButton")
     
     editButton.addEventListener("click",openEdit)
 
@@ -170,6 +179,8 @@ if(item.check == 0){
     collapseImg.id = "icon"
     collapseButton.appendChild(collapseImg)
     collapseButton.addEventListener("click",standard)
+
+    collapseButton.classList.add("collapseButton")
 
     const finishEdit = document.createElement("button")
 
@@ -199,7 +210,9 @@ if(item.check == 0){
 
     function expand(){
         itemBox.innerHTML = ""
-        itemBox.classList = "itemBoxExp, itemBox"
+        itemBox.classList = ""
+        itemBox.classList.add("itemBoxExp")
+        itemBox.classList.add("itemBox")
         itemBox.appendChild(title)
         itemBox.appendChild(description)
         itemBox.appendChild(dueDate)
@@ -230,7 +243,9 @@ if(item.check == 0){
     }
 
     function standard(){
-        itemBox.classList = "itemBoxStd, itemBox"
+        itemBox.classList = ""
+        itemBox.classList.add("itemBoxStd")
+        itemBox.classList.add("itemBox")
         itemBox.innerHTML = ""
         itemBox.appendChild(title)
     itemBox.appendChild(priority)
@@ -240,7 +255,9 @@ if(item.check == 0){
     }
 
     function openEdit(){
-        itemBox.classList = "itemBoxEdt, itemBox"
+        itemBox.classList = ""
+        itemBox.classList.add("itemBoxEdt")
+        itemBox.classList.add("itemBox")
         itemBox.innerHTML = ""
         itemBox.appendChild(editTitle)
         editTitle.value = ""
