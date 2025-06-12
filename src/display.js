@@ -8,6 +8,7 @@ import checked from "./images/checkbox-intermediate.svg"
 import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
 
+import { projectPage } from "./projects"
 import { createItem } from "./data"
 
 let lastList = []
@@ -17,10 +18,39 @@ function getList(){
     return lastList
 }
 
+function orderList(list){
+    let checkedList  = []
+    let unCheckedList = []
+for(let i = 0; i <list.length; i++){
+    if (list[i].check ==0){
+        unCheckedList.push(list[i])
+    }else{
+        checkedList.push(list[i])
+    }
+
+
+}
+for(let j=0; j<checkedList.length;j++){
+    unCheckedList.push(checkedList[j])
+}
+return unCheckedList
+
+}
+
 function displayList(list){
 const content = document.getElementById("content")
 content.innerHTML = ""
+list = orderList(list)
 lastList = list
+
+
+const backButton = document.createElement("button")
+backButton.addEventListener("click",backButtonOnClick)
+function backButtonOnClick(){
+projectPage()
+}
+
+content.appendChild(backButton)
 addToDoDisplay()
     for(let i=0; i<list.length; i++){
         const store = displayItem(list[i],i)
@@ -106,11 +136,17 @@ function displayItem(item, num){
    const uncheckedImg = document.createElement("img")
     uncheckedImg.src = unchecked
     uncheckedImg.id = "icon"
-    checkButton.appendChild(uncheckedImg)
+    
 
    const checkedImg = document.createElement("img")
    checkedImg.src = checked
    checkedImg.id = "icon"
+if(item.check == 0){
+    checkButton.appendChild(uncheckedImg)
+}else{
+    checkButton.appendChild(checkedImg)
+}
+   
 
     const expandButton = document.createElement("button")
     expandButton.addEventListener("click",expand)
