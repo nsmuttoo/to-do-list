@@ -4,6 +4,7 @@ export {createProject,projectPage, projectList}
 
 
 import {displayList} from "./display.js"
+import { getList } from "./display.js"
 
 let projectList = []
 
@@ -76,7 +77,9 @@ content.appendChild(projectBox)
 function enterProject(){
     console.log(project.toDoList)
     console.log(project.name)
+
     displayList(project.toDoList)
+    project.toDoList = getList()
 
 
 }

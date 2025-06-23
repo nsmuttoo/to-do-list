@@ -70,9 +70,34 @@ function addToDoDisplay(){
     const description = document.createElement("input")
     description.placeholder = "Descripton"
     const dueDate = document.createElement("input")
+    dueDate.type = "date"
+    
     dueDate.placeholder = "DueDate"
-    const priority = document.createElement("input")
+    const priority = document.createElement("select")
     priority.placeholder = "Priority"
+    priority.name = "Priority"
+    const pLabel = document.createElement("label")
+    pLabel.htmlFor = "Priority"
+    pLabel.innerHTML = "Priority"
+
+
+    const pOne = document.createElement("option")
+    const pTwo = document.createElement("option")
+    const pThree = document.createElement("option")
+    const pFour = document.createElement("option")
+
+    pOne.value = "1"
+    pOne.innerHTML = "1"
+    pTwo.value = "2"
+    pTwo.innerHTML = "2"
+    pThree.value = "3"
+    pThree.innerHTML = "3"
+    pFour.value = "4"
+    pFour.innerHTML = "4"
+    priority.appendChild(pOne)
+    priority.appendChild(pTwo)
+    priority.appendChild(pThree)
+    priority.appendChild(pFour)
 
     const startNewButton = document.createElement("button")
     const submitNewButton = document.createElement("button")
@@ -99,6 +124,7 @@ startNewButton.appendChild(plusImg)
         addBox.appendChild(title)
         addBox.appendChild(description)
         addBox.appendChild(dueDate)
+        addBox.appendChild(pLabel)
         addBox.appendChild(priority)
 
         addBox.appendChild(submitNewButton)
@@ -194,7 +220,55 @@ if(item.check == 0){
     const editTitle = document.createElement("input")
     const editDescription = document.createElement("input")
     const editDueDate = document.createElement("input")
-    const editPriority = document.createElement("input")
+    editDueDate.type = "date"
+    const editPriority = document.createElement("select")
+    editDueDate.name="dueDate"
+   
+    
+    editPriority.name = "Priority"
+    const pLabel = document.createElement("label")
+    pLabel.htmlFor = "Priority"
+    const dLabel = document.createElement("label")
+
+    dLabel.htmlFor = "dueDate"
+    dLabel.innerHTML = "Due Date"
+    pLabel.innerHTML = "Priority"
+
+
+    const pOne = document.createElement("option")
+    const pTwo = document.createElement("option")
+    const pThree = document.createElement("option")
+    const pFour = document.createElement("option")
+
+    pOne.value = "1"
+    pOne.innerHTML = "1"
+    pTwo.value = "2"
+    pTwo.innerHTML = "2"
+    pThree.value = "3"
+    pThree.innerHTML = "3"
+    pFour.value = "4"
+    pFour.innerHTML = "4"
+    editPriority.appendChild(pOne)
+    editPriority.appendChild(pTwo)
+    editPriority.appendChild(pThree)
+    editPriority.appendChild(pFour)
+
+   // deleteItem(0)
+
+    function deleteItem(index){
+        let store = ""
+       let tempArr = lastList
+        tempArr[index] = ""
+
+        for(let i = index; i<tempArr.length; i++){
+            if(tempArr[i+1] !== undefined){
+            tempArr[i] = tempArr[i+1]}
+        }
+        tempArr.pop()
+        lastList = tempArr
+        displayList(lastList)
+    }
+
 
     function changeCheck(){
         if(item.check == 0){
@@ -206,6 +280,7 @@ if(item.check == 0){
             checkButton.appendChild(uncheckedImg)
         }
         item.checkToggle()
+        displayList(lastList)
     }
 
     function expand(){
@@ -221,6 +296,8 @@ if(item.check == 0){
         itemBox.appendChild(checkButton)
         itemBox.appendChild(editButton)
         itemBox.appendChild(collapseButton)
+
+        
     }
 
     
@@ -260,19 +337,30 @@ if(item.check == 0){
         itemBox.classList.add("itemBox")
         itemBox.innerHTML = ""
         itemBox.appendChild(editTitle)
-        editTitle.value = ""
+        editTitle.value = title.innerHTML
         editTitle.placeholder = "Title"
 
         itemBox.appendChild(editDescription)
-        editDescription.value = ""
+        editDescription.value = description.innerHTML
         editDescription.placeholder = "Description"
-
+        itemBox.appendChild(dLabel)
         itemBox.appendChild(editDueDate)
-        editDueDate.value = ""
+        editDueDate.value = dueDate.innerHTML
         editDueDate.placeholder = "DueDate"
 
+        if(priority.innerHTML == "1"){
+            pOne.selected = "selected"
+        }else if(priority.innerHTML == "2"){
+            pTwo.selected = "selected"
+        }else if(priority.innerHTML == "3"){
+            pThree.selected = "selected"
+        }else if(priority.innerHTML == "4"){
+            pFour.selected = "selected"
+        }
+
+        itemBox.appendChild(pLabel)
         itemBox.appendChild(editPriority)
-        editPriority.value = ""
+        
         editPriority.placeholder = "Priority"
 
         itemBox.appendChild(finishEdit)
