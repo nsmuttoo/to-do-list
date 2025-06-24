@@ -7,6 +7,7 @@ import unchecked from "./images/checkbox-blank-outline.svg"
 import checked from "./images/checkbox-intermediate.svg"
 import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
+import back from "./images/arrow-left.svg"
 
 import { projectPage } from "./projects"
 import { createItem } from "./data"
@@ -42,10 +43,15 @@ const content = document.getElementById("content")
 content.innerHTML = ""
 list = orderList(list)
 lastList = list
-
+const buttonBox = document.createElement("div")
 
 const backButton = document.createElement("button")
 backButton.addEventListener("click",backButtonOnClick)
+const backButtonImg = document.createElement("img")
+backButtonImg.src = back
+backButtonImg.id ="icon"
+backButton.appendChild(backButtonImg)
+
 function backButtonOnClick(){
 projectPage()
 }

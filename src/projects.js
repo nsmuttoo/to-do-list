@@ -5,6 +5,8 @@ export {createProject,projectPage, projectList}
 
 import {displayList} from "./display.js"
 import { getList } from "./display.js"
+import save from "./images/content-save-outline.svg"
+import plus from "./images/plus.svg"
 
 let projectList = []
 
@@ -21,7 +23,8 @@ function setToDoList(newList){
 }
 
 function projectPage(){
-
+    const nav = document.getElementById("title")
+    nav.innerHTML = "Projects"
 const content = document.getElementById("content")
 
 content.innerHTML = ""
@@ -45,8 +48,19 @@ function addProject(){
     submitButton.addEventListener("click", submitButtonOnClick)
 
     newButton.addEventListener("click", newButtonOnClick)
-    newButton.innerHTML = "New Project"
-    submitButton.innerHTML = "sub"
+    
+
+    const plusImg = document.createElement("img")
+       plusImg.src = plus
+       plusImg.id = "icon"
+
+       newButton.appendChild(plusImg)
+    
+    const saveImg = document.createElement("img")
+        saveImg.src = save
+        saveImg.id = "icon"
+        submitButton.appendChild(saveImg)
+
     addBox.appendChild(newButton)
     content.appendChild(addBox)
     
@@ -64,6 +78,7 @@ function addProject(){
 
 function displayProject(project){
 const projectBox = document.createElement("div")
+projectBox.classList.add("projectBox")
 const title = document.createElement("button")
 const content = document.getElementById("content")
 
@@ -77,6 +92,8 @@ content.appendChild(projectBox)
 function enterProject(){
     console.log(project.toDoList)
     console.log(project.name)
+    const nav = document.getElementById("title")
+    nav.innerHTML = project.name
 
     displayList(project.toDoList)
     project.toDoList = getList()
