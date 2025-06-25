@@ -28,7 +28,8 @@ for(let i = 0; i <list.length; i++){
     }else{
         checkedList.push(list[i])
     }
-
+checkedList = orderByPri(checkedList)
+unCheckedList = orderByPri(unCheckedList)
 
 }
 for(let j=0; j<checkedList.length;j++){
@@ -36,6 +37,24 @@ for(let j=0; j<checkedList.length;j++){
 }
 return unCheckedList
 
+}
+
+function orderByPri(list){
+    let list1 =[]
+    
+
+    
+    for(let j=1; j<5; j++){
+        for(let i=0; i<list.length; i++){
+       if(list[i].priority == j){
+        list1.push(list[i])
+       }
+        }
+    }
+    
+    
+
+    return list1
 }
 
 function displayList(list){
@@ -51,12 +70,14 @@ const backButtonImg = document.createElement("img")
 backButtonImg.src = back
 backButtonImg.id ="icon"
 backButton.appendChild(backButtonImg)
+buttonBox.appendChild(backButton)
+buttonBox.classList.add("buttonBox")
 
 function backButtonOnClick(){
 projectPage()
 }
 
-content.appendChild(backButton)
+content.appendChild(buttonBox)
 addToDoDisplay()
     for(let i=0; i<list.length; i++){
         const store = displayItem(list[i],i)
@@ -71,6 +92,7 @@ function addToDoDisplay(){
     const greaterAddBox = document.createElement("div")
 
     const addBox = document.createElement("div")
+    addBox.classList.add("addBox")
     const title = document.createElement("input")
     title.placeholder = "Title"
     const description = document.createElement("input")
@@ -153,6 +175,8 @@ function displayItem(item, num){
     itemBox.id = num
     itemBox.classList.add("itemBoxStd")
     itemBox.classList.add("itemBox") 
+    
+    
     const title = document.createElement("div")
     title.innerHTML = item.title
 
@@ -184,6 +208,8 @@ if(item.check == 0){
 }else{
     checkButton.appendChild(checkedImg)
 }
+
+    
    
 
     const expandButton = document.createElement("button")
@@ -261,6 +287,21 @@ if(item.check == 0){
 
    // deleteItem(0)
 
+   function addPriClass(){
+    if(item.priority == 1){
+        itemBox.classList.add("pOne")
+        
+    }else if(item.priority==2){
+        itemBox.classList.add("pTwo")
+    }else if(item.priority == 3){
+        itemBox.classList.add("pThree")
+        
+    }else if(item.priority == 4){
+        itemBox.classList.add("pFour")
+        
+    }
+   }
+
     function deleteItem(index){
         let store = ""
        let tempArr = lastList
@@ -294,6 +335,7 @@ if(item.check == 0){
         itemBox.classList = ""
         itemBox.classList.add("itemBoxExp")
         itemBox.classList.add("itemBox")
+        addPriClass()
         itemBox.appendChild(title)
         itemBox.appendChild(description)
         itemBox.appendChild(dueDate)
@@ -329,6 +371,8 @@ if(item.check == 0){
         itemBox.classList = ""
         itemBox.classList.add("itemBoxStd")
         itemBox.classList.add("itemBox")
+        addPriClass()
+        
         itemBox.innerHTML = ""
         itemBox.appendChild(title)
     itemBox.appendChild(priority)

@@ -41,6 +41,7 @@ function addProject(){
     const content = document.getElementById("content")
 
     const addBox = document.createElement("div")
+    addBox.classList.add("addBoxProject")
     const newButton = document.createElement("button")
     const nameInput = document.createElement("input")
     nameInput.placeholder = "Project Name"
