@@ -9,6 +9,8 @@ import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
 
 let projectList = []
+let store = localStorage.getItem('projectList');
+projectList = JSON.parse(store)
 
 
 
@@ -28,13 +30,45 @@ function projectPage(){
 const content = document.getElementById("content")
 
 content.innerHTML = ""
-
+saveButton()
 addProject()
+
     for(let i=0;i<projectList.length; i++){
         displayProject(projectList[i])
     }
 
 
+}
+
+function saveButton(){
+    const content = document.getElementById("content")
+
+    const saveBox = document.createElement("div")
+    const localButton = document.createElement("button")
+    const localImg = document.createElement("img")
+    const localLabel = document.createElement("label")
+
+
+    localImg.id = "icon"
+    localImg.src = save
+   // localButton.innerText = "Locally Save:"
+    localButton.appendChild(localImg)
+    saveBox.appendChild(localLabel)
+    saveBox.appendChild(localButton)
+
+    localButton.name = "local"
+    localLabel.innerHTML = "Locally Save:"
+    localLabel.htmlFor = "local"
+  
+    saveBox.classList.add("saveBoxProject")
+
+    localButton.addEventListener("click",localButtonOnClick)
+
+    function localButtonOnClick(){
+        localStorage.setItem('projectList', JSON.stringify(projectList))
+    }
+
+    content.appendChild(saveBox)
 }
 
 function addProject(){
