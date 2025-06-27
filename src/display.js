@@ -8,6 +8,7 @@ import checked from "./images/checkbox-intermediate.svg"
 import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
 import back from "./images/arrow-left.svg"
+import deleteIcon from "./images/delete-outline.svg"
 
 import { projectPage } from "./projects"
 import { createItem } from "./data"
@@ -80,10 +81,13 @@ projectPage()
 content.appendChild(buttonBox)
 addToDoDisplay()
     for(let i=0; i<list.length; i++){
+        console.log(list[i].deleted)
+        console.log(list[i].check)
+       if(list[i].deleted == 0){
         const store = displayItem(list[i],i)
         
        content.appendChild(store.itemBox) 
-       
+    }
     }
 }
 
@@ -162,7 +166,7 @@ startNewButton.appendChild(plusImg)
     function saved(){
         console.log("ooooo")
         lastList.push(
-            createItem(title.value,description.value,dueDate.value,priority.value))
+            createItem(title.value,description.value,dueDate.value,priority.value,0,0))
         displayList(lastList)
 
     }
@@ -208,8 +212,16 @@ if(item.check == 0){
 }else{
     checkButton.appendChild(checkedImg)
 }
-
+    const deleteBox = document.createElement("div")
+    const deleteButton = document.createElement("button")
+    const deleteImg = document.createElement("img") 
     
+    deleteImg.src = deleteIcon
+    deleteImg.id = "icon"
+    deleteButton.appendChild(deleteImg)
+
+    deleteButton.addEventListener("click",deleteButtonOnClick)
+    deleteBox.appendChild(deleteButton)
    
 
     const expandButton = document.createElement("button")
@@ -316,6 +328,11 @@ if(item.check == 0){
         displayList(lastList)
     }
 
+    function deleteButtonOnClick(){
+        item.deleteThis()
+        displayList(lastList)
+    }
+
 
     function changeCheck(){
         if(item.check == 0){
@@ -377,6 +394,7 @@ if(item.check == 0){
         itemBox.appendChild(title)
     itemBox.appendChild(priority)
     itemBox.appendChild(checkButton)
+    itemBox.appendChild(deleteButton)
     itemBox.appendChild(expandButton)
 
     }

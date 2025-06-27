@@ -1,6 +1,13 @@
 
-function createItem(title,description,dueDate,priority){
-const check = 0
+function createItem(title,description,dueDate,priority,check,deleted){
+
+
+
+function deleteThis(){
+this.deleted = 1
+}
+
+
 
 function setTitle(newTitle){
     this.title = newTitle
@@ -31,7 +38,7 @@ function checkToggle(){
 
 
 
-    return{title,description,dueDate,priority,check ,setTitle,setDescription,setDueDate,setPriority,checkToggle,check}
+    return{title,description,dueDate,priority,check,deleted ,setTitle,setDescription,setDueDate,setPriority,checkToggle,check,deleteThis,deleted}
 
 
 }

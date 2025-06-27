@@ -5,12 +5,33 @@ export {createProject,projectPage, projectList}
 
 import {displayList} from "./display.js"
 import { getList } from "./display.js"
+import { createItem } from "./data.js"
 import save from "./images/content-save-outline.svg"
 import plus from "./images/plus.svg"
 
 let projectList = []
 let store = localStorage.getItem('projectList');
 projectList = JSON.parse(store)
+rebuildList()
+
+
+function rebuildList(){
+    
+    for(let i=0; i<projectList.length;i++){
+        store =[]
+        for(let j=0; j<projectList[i].toDoList.length;j++){
+            store[j] = reBuildObject(projectList[i].toDoList[j])
+            
+        }
+        projectList[i] = createProject(projectList[i].name)
+        projectList[i].setToDoList(store)
+    }
+}
+
+function reBuildObject(item){
+
+return createItem(item.title,item.description,item.dueDate,item.priority,item.check,item.deleted)
+}
 
 
 
